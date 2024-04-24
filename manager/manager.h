@@ -3,8 +3,9 @@
 //
 
 #pragma once
-#include "fmt/format.h"
 #include "student.pb.h"
+#include "trpc/common/trpc_app.h"
+
 #include <vector>
 namespace stu = trpc::university::stu;
 // namespace trpc::university::stu
@@ -36,7 +37,7 @@ public:
   deserialize(const std::vector<char> &bytes) {
     trpc::university::stu::Student student;
     if (!student.ParseFromArray(bytes.data(), static_cast<int>(bytes.size()))) {
-      std::cerr << "Deserialization failed." << std::endl;
+      TRPC_FMT_ERROR("Deserialization failed.");
     }
     return student;
   }

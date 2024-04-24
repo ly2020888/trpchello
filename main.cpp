@@ -61,7 +61,7 @@ int main(int argc, char **argv) {
 
   auto stuu = University::Manager::deserialize(bytes);
   University::display(stuu);
-
+  server.Main(argc, argv);
   server.Wait();
 
   return 0;
