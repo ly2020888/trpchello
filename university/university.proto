@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package trpc.university.stu;
+
+service University {
+    rpc Ping (PingMessage) returns (PingMessage) {};
+    rpc GetEnvelopment (Envelopment) returns (Envelopment) {}
+    rpc PutEnvelopment (Envelopment) returns (Envelopment) {}
+
+}
+message PingMessage {
+    string ping = 1;
+}
+
+message Envelopment {
+    string uuid = 1;
+    bytes playload = 2;
+}

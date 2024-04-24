@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package trpc.university.stu;
+
+message Student {
+    string name = 1;
+    int32 id = 2;
+    int32 age = 3;
+    string gender = 4;
+    float score = 5;
+}
