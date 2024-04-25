@@ -7,7 +7,8 @@
 // All rights reserved.
 //
 // If you have downloaded a copy of the tRPC source code from Tencent,
-// please note that tRPC source code is licensed under the  Apache 2.0 License,
+// please note that tRPC source code is licensed under the  Apache 2.0
+License,
 // A copy of the Apache 2.0 License is included in this file.
 //
 //
@@ -20,12 +21,12 @@
 #include "trpc/client/make_client_context.h"
 #include "trpc/client/trpc_client.h"
 #include "trpc/common/runtime_manager.h"
-#include "trpc/log/trpc_log.h"
 
 #include "university.trpc.pb.h"
 
-DEFINE_string(client_config, "trpc_cpp.yaml",
-              "framework client_config file, --client_config=trpc_cpp.yaml");
+    DEFINE_string(
+        client_config, "trpc_cpp.yaml",
+        "framework client_config file, --client_config=trpc_cpp.yaml");
 DEFINE_string(service_name, "trpc.university.xidian.stu",
               "callee service name");
 

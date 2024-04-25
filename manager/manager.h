@@ -8,9 +8,9 @@
 
 #include <vector>
 namespace stu = trpc::university::stu;
-// namespace trpc::university::stu
 namespace University {
 
+// db::obj
 class Manager {
 public:
   static stu::Student createStudent(const std::string &name, int id, int age,
@@ -23,21 +23,19 @@ public:
     student.set_score(score);
     return student;
   }
-  static std::vector<char>
-  serialize(const trpc::university::stu::Student &student) {
+  static std::vector<char> serialize(const stu::Student &student) {
     std::string serialized_data;
     if (student.SerializeToString(&serialized_data)) {
       std::vector<char> bytes(serialized_data.begin(), serialized_data.end());
       return bytes;
-    } else {
-      return {};
     }
+    return {};
   }
-  static trpc::university::stu::Student
-  deserialize(const std::vector<char> &bytes) {
-    trpc::university::stu::Student student;
+  static stu::Student deserialize(const std::vector<char> &bytes) {
+    stu::Student student;
     if (!student.ParseFromArray(bytes.data(), static_cast<int>(bytes.size()))) {
       TRPC_FMT_ERROR("Deserialization failed.");
+      return {};
     }
     return student;
   }

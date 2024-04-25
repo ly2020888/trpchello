@@ -24,3 +24,4 @@ plugins:
           stdout:
           local_file:
             filename: university_client.log
+

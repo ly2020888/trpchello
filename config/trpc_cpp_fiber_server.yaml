@@ -20,6 +20,22 @@ server:
       ip: 0.0.0.0                     # Service bind ip
       port: 12345                     # Service bind port
 
+client:
+  service:
+    - name: redis_server
+      target: 0.0.0.0:6379
+      protocol: redis
+      timeout: 1000
+      network: tcp
+      conn_type: long
+      selector_name: direct
+      # For high performance,if the backend Redis Server support the Pipeline mode (responding in the order of requests within the connection)
+      # you can use connection-pipeline which config like this:
+      # support_pipeline: true
+      redis:
+        # if backend Redis Server enable authentication
+        password: a123456
+
 plugins:
   log:
     default:

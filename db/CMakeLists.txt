@@ -17,21 +17,20 @@ link_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib)
 #---------------------------------------------------------------------------------------
 # Compile project
 #---------------------------------------------------------------------------------------
-project(trcphello)
+project(dblib)
 
-# 添加trpc库及其依赖的三方
-set(LIBRARY trpc protolib studentlib ${LIBS_BASIC})
-add_subdirectory(${CMAKE_SOURCE_DIR}/university)
-add_subdirectory(${CMAKE_SOURCE_DIR}/manager)
-add_subdirectory(${CMAKE_SOURCE_DIR}/db)
+set(LIBRARY trpc ${LIBS_BASIC})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+add_library(dblib database.cc database.h)
+target_link_libraries(dblib ${LIBRARY})
 
-add_executable(trcphello main.cpp university_service.h university_service.cc
-        db/database.cc
-        db/Database.h)
+add_executable(dblib_test
+        ${CMAKE_CURRENT_SOURCE_DIR}/database.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/database_test.cc)
 
-# 在您的构建目标里link trpc库
-target_link_libraries(trcphello ${LIBRARY})
+# ${LIB_GTEST_GMOCK} must be linked before ${LIBRARY}
+target_link_libraries(dblib_test ${LIB_GTEST_GMOCK} dblib)
 
-add_executable(trcphello_client client/fiber_client.cpp)
-
-target_link_libraries(trcphello_client ${LIBRARY})
+enable_testing()
+add_test(NAME RedisServiceTest
+        COMMAND dblib_test)

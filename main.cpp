@@ -51,16 +51,6 @@ public:
 int main(int argc, char **argv) {
 
   University::StudentManagement::UniversityServer server;
-  trpc::university::stu::Student s =
-      University::Manager::createStudent("haha", 11, 1, "man", 1.9);
-  auto bytes = University::Manager::serialize(s);
-  for (const auto i : bytes) {
-    std::cout << static_cast<int>(i) << " ";
-  }
-  std::cout << "\n";
-
-  auto stuu = University::Manager::deserialize(bytes);
-  University::display(stuu);
   server.Main(argc, argv);
   server.Wait();
 
