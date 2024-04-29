@@ -20,7 +20,7 @@ link_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib)
 project(trcphello)
 
 # 添加trpc库及其依赖的三方
-set(LIBRARY trpc protolib studentlib ${LIBS_BASIC})
+set(LIBRARY trpc protolib managerlib ${LIBS_BASIC})
 add_subdirectory(${CMAKE_SOURCE_DIR}/university)
 add_subdirectory(${CMAKE_SOURCE_DIR}/manager)
 add_subdirectory(${CMAKE_SOURCE_DIR}/db)

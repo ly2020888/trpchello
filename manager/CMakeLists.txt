@@ -16,7 +16,7 @@ set(PB_PROTOC ${TRPC_INSTALL_PATH}/bin/protoc)
 #---------------------------------------------------------------------------------------
 # Compile library
 #---------------------------------------------------------------------------------------
-project(studentlib)
+project(managerlib)
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 
@@ -27,4 +27,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 # @param CMAKESOURCEDIR             [Input]The directory where the CMakeLists.txt of the project is located
 COMPILE_PROTO(OUT_PB_SRCS "${PB_SRC}" ${PB_PROTOC} ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_library(studentlib ${OUT_PB_SRCS} manager.cpp manager.h)
+add_library(managerlib ${OUT_PB_SRCS} manager.cc manager.h)
+
+add_executable(managerlib_test ${OUT_PB_SRCS} manager_test.cc)
+target_link_libraries(managerlib_test ${LIB_GTEST_GMOCK} managerlib dblib)
